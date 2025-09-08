@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi amada Loreidy ❤️</title>
+    <style>
+        body {
+            background-color: #fce4ec;
+            font-family: 'Georgia', serif;
+            color: #4a148c;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 3em;
+            color: #d81b60;
+        }
+
+        .photo-and-video {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .photo-container img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .video-player {
+            margin-top: 30px;
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+        }
+
+        .video-player iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .poem-container {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-style: italic;
+            white-space: pre-line;
+            text-align: left;
+            min-height: 150px;
+            position: relative;
+        }
+
+        h2.poem-title {
+            margin-bottom: 0px;
+            margin-top: 0px;
+            text-align: center;
+        }
+
+        #poem-text {
+            line-height: 1.6;
+            margin-top: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Para mi amada Loreidy ❤️</h1>
+        </header>
+
+        <div class="photo-and-video">
+            <div class="photo-container">
+                <img src="https://github.com/jesuxzx/Im-genes-/raw/7343c4cd80a5db260822e7713a5e6377e4d449a5/IMG-20250823-WA0074.jpg" alt="Loreidy y yo">
+            </div>
+        </div>
+
+        <div class="video-player">
+            <div id="youtube-player"></div>
+        </div>
+
+        <div class="poem-container">
+            <h2 class="poem-title">Mi Loreidy ❤️</h2>
+            <p id="poem-text"></p>
+        </div>
+    </div>
+    
+    <script>
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        var hasStartedTyping = false;
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-player', {
+                height: '360',
+                width: '640',
+                videoId: 'p_1Osm5xE5Y',
+                playerVars: {
+                    'autoplay': 0,
+                    'controls': 1,
+                    'modestbranding': 1,
+                    'rel': 0,
+                    'showinfo': 0,
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {}
+
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.PLAYING && !hasStartedTyping) {
+                hasStartedTyping = true;
+                setTimeout(typePoem, 24000);
+            }
+        }
+        
+        const poemText = document.getElementById('poem-text');
+        const poem = `
+            Mi Loreidy, mi amor eterno,
+            en tus ojos encuentro mi universo.
+            Tu sonrisa ilumina mis días,
+            eres la melodía de mi vida.
+            Cada momento a tu lado es un regalo,
+            y mi amor por ti, un poema sin final.
+
+            Contigo, el tiempo se detiene,
+            el mundo cobra un nuevo sentido.
+            Eres la calma en mi tormenta,
+            el sol que disipa cualquier miedo.
+            Te amo más mass de lo que estas palabras pueden expresar,
+            un amor que no tiene fin ni fronteras.
+
+            En cada risa, en cada suspiro,
+            encuentro la razón por la que respiro.
+            Tu voz es un eco en mi alma,
+            un dulce consuelo que me calma.
+            Eres el sueño que siempre anhelé,
+            la felicidad que por fin encontré.
+
+            Mi corazón late a tu ritmo,
+            en un ritmo que nunca va hacia atrás.
+            Nuestras almas se unen en un abrazo,
+            tejiendo un destino sin fracaso.
+            Tú y yo, una historia de verdad,
+            sellada con amor y lealtad.
+
+            El futuro es un lienzo en blanco,
+            y cada día a tu lado, un nuevo tramo.
+            Pintaremos juntos nuestro camino,
+            un viaje divino, un bello destino.
+            No hay duda en mi ser, mi amor,
+            eres mi puerto, mi refugio, mi calor.
+
+            Te doy mi vida, mi fe, mi pasión,
+            eres la única, mi única razón.
+            A tu lado quiero envejecer,
+            ver contigo el sol amanecer.
+            Hasta el último de mis días,
+            serás mi más grande alegría.
+
+            Mi Loreidy, la más hermosa flor,
+            siempre vivirás en mi corazón.
+            Con cada latido, mi amor crece más,
+            eres mi presente, y mucho más.
+            Para ti, este poema que ahora termino,
+            mi amor por ti es mi único camino.
+        `;
+
+        let charIndex = 0;
+        const typingSpeed = 90;
+
+        function typePoem() {
+            if (charIndex < poem.length) {
+                poemText.innerHTML += poem.charAt(charIndex);
+                charIndex++;
+                setTimeout(typePoem, typingSpeed);
+            }
+        }
+    </script>
+</body>
+</html>
